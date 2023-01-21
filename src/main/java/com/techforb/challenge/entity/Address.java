@@ -3,6 +3,8 @@ package com.techforb.challenge.entity;
 
 import jakarta.persistence.*;
 
+@Entity
+@Table( name = "address" )
 public class Address {
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE )

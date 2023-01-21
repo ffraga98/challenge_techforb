@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.math.BigDecimal;
 
+@Entity
+@Table( name = "sale" )
 public class Sale {
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
