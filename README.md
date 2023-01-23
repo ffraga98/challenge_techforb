@@ -4,4 +4,5 @@
 - Nombre: Fernando Fraga
 - Puestulación: Backend JR
 
-## [Enunciado](https://www.example.com/my great page)
+## Enunciado
+[PDF](https://github.com/ffraga98/challenge_techforb/blob/master/docs/Challenge-API-Rest.docx.pdf)
