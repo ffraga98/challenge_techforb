@@ -1,27 +1,27 @@
 package com.techforb.challenge.mapper;
 
-import com.techforb.challenge.dto.command.ProductDTO;
-import com.techforb.challenge.entity.Product;
+import com.techforb.challenge.dto.command.SaleCDto;
+import com.techforb.challenge.dto.query.SaleQDto;
+import com.techforb.challenge.entity.Sale;
 import org.springframework.stereotype.Component;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-@Component("productMapper")
-public class ProductMapper implements Mapper<Product, ProductDTO> {
+
+@Component("saleMapper")
+public class SaleMapper implements Mapper<Sale, SaleCDto, SaleQDto> {
+    final String DATE_FORMAT = "dd/MM/uuuu";
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
     @Override
-    public Product createEntity(ProductDTO productDTO){
-        Product p = new Product();
-
-        p.setDescription(productDTO.getDescription());
-        p.setName(productDTO.getName());
-        p.setPrice(productDTO.getPrice());
-        p.setStock(productDTO.getStock());
-
-        return p;
+    public Sale createEntity(SaleCDto dto){
+        Sale s = new Sale();
+        s.setDate(LocalDate.parse(dto.getDate(), formatter));
+        return s;
     }
 
     @Override
-    public ProductDTO createDTO(Product product){
-        return new ProductDTO();
+    public SaleQDto createDTO(Sale sale){
+        return new SaleQDto();
     }
 }

@@ -1,25 +1,25 @@
 package com.techforb.challenge.mapper;
 
 import com.techforb.challenge.dto.command.ProductDTO;
+import com.techforb.challenge.dto.externApi.ProductApi;
 import com.techforb.challenge.entity.Product;
 import org.springframework.stereotype.Component;
 
-@Component("productMapper")
-public class ProductMapper implements Mapper<Product, ProductDTO, ProductDTO> {
+@Component("ApiMapper")
+public class ProductApiMapper implements Mapper<Product, ProductApi, ProductApi> {
     @Override
-    public Product createEntity(ProductDTO productDTO){
+    public Product createEntity(ProductApi api){
         Product p = new Product();
-
-        p.setDescription(productDTO.getDescription());
-        p.setName(productDTO.getName());
-        p.setPrice(productDTO.getPrice());
-        p.setStock(productDTO.getStock());
+        p.setPrice(api.getProductPrice());
+        p.setStock(api.getProductQuantity());
+        p.setName(api.getProductName());
+        p.setDescription(api.getProductDescription());
 
         return p;
     }
 
     @Override
-    public ProductDTO createDTO(Product product){
-        return new ProductDTO();
+    public ProductApi createDTO(Product product){
+        return new ProductApi();
     }
 }
