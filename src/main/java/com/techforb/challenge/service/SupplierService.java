@@ -39,7 +39,7 @@ public class SupplierService implements IService<Supplier,Supplier, Long> {
 
     @Override
     public List<Supplier> findAll() {
-        return supplierRepository.findAllByDeletedIsFalse();
+        return supplierRepository.findAllWithAvailableProducts();
     }
 
     @Override
