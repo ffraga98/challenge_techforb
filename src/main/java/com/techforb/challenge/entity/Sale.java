@@ -1,9 +1,13 @@
 package com.techforb.challenge.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table( name = "sale" )
@@ -12,32 +16,22 @@ public class Sale {
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @JsonIgnore
     private Customer customer;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @OneToMany
+    @JoinColumn(name = "sale_id")
+    private List<SalesItem> items = new ArrayList<>();
 
-    @Column
-    private Integer amount;
-
-    @Column
-    private BigDecimal totalPrice;
+    @Column(nullable = false)
+    private BigDecimal totalPrice = BigDecimal.ZERO;
 
     public Sale() {
-    }
-
-    public Sale(LocalDate date, Customer customer, Product product, Integer amount, BigDecimal totalPrice) {
-        this.date = date;
-        this.customer = customer;
-        this.product = product;
-        this.amount = amount;
-        this.totalPrice = totalPrice;
     }
 
     public Long getId() {
@@ -60,27 +54,31 @@ public class Sale {
         this.customer = customer;
     }
 
-    public Product getProduct() {
-        return product;
+
+
+    public Optional<SalesItem> addItem(Product product, Integer amount) {
+        if( product.purchase(amount) ){
+            SalesItem item = new SalesItem(amount, product);
+            this.items.add(item);
+            addTotalPrice(item);
+            return Optional.of(item);
+        }
+        return Optional.empty();
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    private void addTotalPrice(SalesItem item) {
+        totalPrice = totalPrice.add(item.computePrice());
     }
 
-    public Integer getAmount() {
-        return amount;
+    public List<SalesItem> getItems() {
+        return items;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setItems(List<SalesItem> items) {
+        this.items = items;
     }
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
-    }
-
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
     }
 }

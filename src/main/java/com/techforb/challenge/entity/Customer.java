@@ -3,44 +3,52 @@ package com.techforb.challenge.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.SQLDelete;
 
 import java.util.Set;
 
 
 @Entity
 @Table( name = "customer" )
+@SQLDelete(sql = "UPDATE customer SET deleted = true WHERE id = ?")
 public class Customer {
     @Id
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private Long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
-    private String cuit;
+    @Column(nullable = false)
+    private String dni;
 
-    @Column
+    @Column(nullable = false)
     private String phone;
 
-    @OneToOne( cascade = CascadeType.ALL )
+    @OneToOne( cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE} )
     @JoinColumn( name = "address_id", referencedColumnName = "id")
     private Address address;
 
-
-    @OneToMany( mappedBy = "customer" )
-    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "customer" )
     private Set<Sale> purchases;
+
+    @Column(nullable = false)
+    private Boolean deleted = Boolean.FALSE;
 
     public Customer() {
     }
 
-    public Customer(String name, String cuit, String phone, Address address, Set<Sale> purchases) {
+    public Customer(String name, String cuit, String phone, Address address, Set<Sale> purchases, Boolean deleted) {
         this.name = name;
-        this.cuit = cuit;
+        this.dni = dni;
         this.phone = phone;
         this.address = address;
         this.purchases = purchases;
+        this.deleted = deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     public Long getId() {
@@ -55,12 +63,12 @@ public class Customer {
         this.name = name;
     }
 
-    public String getCuit() {
-        return cuit;
+    public String getDni() {
+        return dni;
     }
 
-    public void setCuit(String cuit) {
-        this.cuit = cuit;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getPhone() {
@@ -83,7 +91,18 @@ public class Customer {
         return purchases;
     }
 
-    public void setPurchases(Set<Sale> purchases) {
-        this.purchases = purchases;
+    public void update(Customer c){
+        if ( c.name != null && !c.name.isEmpty()){
+            this.name = c.name;
+        }
+        if ( c.dni != null && !c.dni.isEmpty()){
+            this.dni = c.dni;
+        }
+        if ( c.phone != null && !c.phone.isEmpty()){
+            this.phone = c.phone;
+        }
+        if ( c.address != null ){
+            this.address.update(c.address);
+        }
     }
 }

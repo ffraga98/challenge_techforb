@@ -2,6 +2,7 @@ package com.techforb.challenge.entity;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.SQLDelete;
 
 @Entity
 @Table( name = "address" )
@@ -10,10 +11,10 @@ public class Address {
     @GeneratedValue( strategy = GenerationType.SEQUENCE )
     private Long id;
     
-    @Column
+    @Column(nullable = false)
     private String city;
 
-    @Column
+    @Column(nullable = false)
     private String country;
 
     @Column
@@ -54,5 +55,19 @@ public class Address {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public void update(Address ad){
+        if ( ad != null ) {
+            if ( ad.city != null && !ad.city.isEmpty() ){
+                this.city = ad.city;
+            }
+            if ( ad.country != null && !ad.country.isEmpty() ){
+                this.country = ad.country;
+            }
+            if ( ad.street != null && !ad.street.isEmpty() ){
+                this.street = ad.street ;
+            }
+        }
     }
 }
