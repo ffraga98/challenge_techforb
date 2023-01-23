@@ -1,0 +1,841 @@
+{
+	"info": {
+		"_postman_id": "db4aa6cc-6161-4950-ab6f-b381b7221995",
+		"name": "Techforb Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24238428"
+	},
+	"item": [
+		{
+			"name": "Suppliers",
+			"item": [
+				{
+					"name": "findAll",
+					"item": [
+						{
+							"name": "add Supplier 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"name\": \"Proveedor 1\",\r\n    \"cuit\": \"11-2312123-1\",\r\n    \"phone\": \"1234123413\",\r\n    \"address\": {\r\n        \"city\": \"Buenos Aires\",\r\n        \"country\": \"Argentina\"\r\n    }\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/supplier/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Supplier 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"name\": \"Proveedor 2\",\r\n    \"cuit\": \"11-2312123-1\",\r\n    \"phone\": \"1234123413\",\r\n    \"address\": {\r\n        \"city\": \"Buenos Aires\",\r\n        \"country\": \"Argentina\"\r\n    }\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/supplier/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/supplier",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"item": [
+						{
+							"name": "remove Supplier 1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/supplier/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "restore",
+					"item": [
+						{
+							"name": "restore Supplier 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/supplier/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update Supplier 2",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \r\n    \"id\": 2,\r\n    \"name\": \"Proveedor 02\",\r\n    \"address\": {\r\n        \"city\": \"Córdoba\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/supplier/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"supplier",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "findAll",
+					"item": [
+						{
+							"name": "add Producto 1 (S1)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   \r\n    \"supplierId\": 1,\r\n    \"name\": \"P1 S1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 1.11,\r\n    \"stock\": 11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Producto 2 (S1)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"P2 S1\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 2.11,\r\n    \"stock\": 21,\r\n    \"supplierId\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Producto 1 (S2)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"P1 S2\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 1.22,\r\n    \"stock\": 12,\r\n    \"supplierId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Producto 2 (S2)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"P2 S2\",\r\n    \"description\": \"lorem ipsum\",\r\n    \"price\": 2.22,\r\n    \"stock\": 22,\r\n    \"supplierId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/product",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"item": [
+						{
+							"name": "remove P1 S1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/product/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "restore",
+					"item": [
+						{
+							"name": "restore P1 S1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":1,\r\n    \"price\": 11.11\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "filters",
+					"item": [
+						{
+							"name": "findByLowStock",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/product/?stock=12",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										""
+									],
+									"query": [
+										{
+											"key": "stock",
+											"value": "12"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "formatter",
+					"item": [
+						{
+							"name": "extern api request",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://techforb-mockapi.free.beeceptor.com",
+									"protocol": "https",
+									"host": [
+										"techforb-mockapi",
+										"free",
+										"beeceptor",
+										"com"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "format extern api request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"productName\": \"Producto 1\",\r\n        \"productPrice\": 1.0,\r\n        \"productQuantity\": 12,\r\n        \"productDescription\": \"url\"\r\n    },\r\n    {\r\n        \"productName\": \"Producto 2\",\r\n        \"productPrice\": 2.0,\r\n        \"productQuantity\": 22,\r\n        \"productDescription\": \"url\"\r\n    },\r\n    {\r\n        \"productName\": \"Producto 3\",\r\n        \"productPrice\": 3.0,\r\n        \"productQuantity\": 32,\r\n        \"productDescription\": \"url\"\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/product/format",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"product",
+										"format"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "findAll",
+					"item": [
+						{
+							"name": "add Cliente 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Fernando\",\r\n    \"dni\": \"11-14121212-01\",\r\n    \"phone\": \"4245-9543\",\r\n    \"address\": {\r\n        \"city\": \"Buenos Aires\",\r\n        \"country\": \"Argentina\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add Cliente 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Ernesto\",\r\n    \"dni\": \"11-14121212-01\",\r\n    \"phone\": \"4245-9543\",\r\n    \"address\": {\r\n        \"city\": \"Buenos Aires\",\r\n        \"country\": \"Argentina\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "remove",
+					"item": [
+						{
+							"name": "delete Cliente 1",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/customer/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "restore",
+					"item": [
+						{
+							"name": "restore Cliente 1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "update",
+					"item": [
+						{
+							"name": "update Cliente 1",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Fernando Fraga\",\r\n    \"address\": {\r\n        \"city\": \"Lomas de Zamora, Buenos Aires\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/customer/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"customer",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "findAll",
+					"item": [
+						{
+							"name": "add only from S1",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"date\": \"01/01/2022\",\r\n\"customerId\": 1,\r\n\"productsId\": [1,2],\r\n\"amounts\": [1,1]\r\n}       ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/sale/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add only from S2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"date\": \"02/01/2022\",\r\n\"customerId\": 2,\r\n\"productsId\": [3,4],\r\n\"amounts\": [1,1,1]\r\n}       ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/sale/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add from S1 and S2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"date\": \"03/01/2022\",\r\n\"customerId\": 2,\r\n\"productsId\": [1,3],\r\n\"amounts\": [1,1]\r\n}       ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/sale/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/sale",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "filters Copy",
+					"item": [
+						{
+							"name": "findByDay",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"date\": \"22/01/2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/sale/",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findBySupplier",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/sale/supplier/2",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"sale",
+										"supplier",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
