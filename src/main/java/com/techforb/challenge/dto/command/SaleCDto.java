@@ -1,19 +1,18 @@
 package com.techforb.challenge.dto.command;
 
-import java.math.BigDecimal;
 import java.util.List;
 
-public class SaleDTO {
+public class SaleCDto {
     private Long id;
     private String date;
     private Long customerId;
     private List<Long> productsId;
     private List<Integer> amounts;
 
-    public SaleDTO() {
+    public SaleCDto() {
     }
 
-    public SaleDTO(Long id, String date, Long customerId, List<Long> productsId, List<Integer> amounts) {
+    public SaleCDto(Long id, String date, Long customerId, List<Long> productsId, List<Integer> amounts) {
         this.id = id;
         this.date = date;
         this.customerId = customerId;
@@ -21,7 +20,7 @@ public class SaleDTO {
         this.amounts = amounts;
     }
 
-    public SaleDTO(String date, Long customerId, List<Long> productsId, List<Integer> amounts) {
+    public SaleCDto(String date, Long customerId, List<Long> productsId, List<Integer> amounts) {
         this.date = date;
         this.customerId = customerId;
         this.productsId = productsId;
