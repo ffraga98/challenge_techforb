@@ -34,7 +34,8 @@ public class SupplierService implements IService<Supplier,Supplier, Long> {
     private Supplier restore( Long id ) {
         Supplier c = supplierRepository.findById( id ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         c.setDeleted(Boolean.FALSE);
-        return supplierRepository.save(c);
+        supplierRepository.save(c);
+        return supplierRepository.findByIdWithAvailableProducts( id ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override

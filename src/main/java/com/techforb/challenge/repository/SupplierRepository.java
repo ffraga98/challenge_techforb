@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SupplierRepository extends JpaRepository<Supplier, Long> {
-    public List<Supplier> findAllByDeletedIsFalse();
+    @Query( "from Supplier as s join fetch s.supplied_products as p where p.deleted = false and s.deleted = false and s.id = ?1")
+    Optional<Supplier> findByIdWithAvailableProducts(Long id);
     @Query( "from Supplier as s join fetch s.supplied_products as p where p.deleted = false and s.deleted = false")
-    public List<Supplier> findAllWithAvailableProducts();
+    List<Supplier> findAllWithAvailableProducts();
 }
