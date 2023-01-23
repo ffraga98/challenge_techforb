@@ -379,7 +379,7 @@
 					"name": "update",
 					"item": [
 						{
-							"name": "update",
+							"name": "update P1 S1",
 							"request": {
 								"method": "PUT",
 								"header": [],
@@ -780,7 +780,7 @@
 					]
 				},
 				{
-					"name": "filters Copy",
+					"name": "filters",
 					"item": [
 						{
 							"name": "findByDay",
