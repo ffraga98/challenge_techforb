@@ -1,7 +1,8 @@
 package com.techforb.challenge.service;
 
-import com.techforb.challenge.entity.Customer;
 import com.techforb.challenge.entity.Supplier;
+import com.techforb.challenge.entity.Supplier;
+import com.techforb.challenge.repository.AddressRepository;
 import com.techforb.challenge.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,18 +12,34 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class SupplierService implements IService<Supplier, Long> {
+public class SupplierService implements IService<Supplier,Supplier, Long> {
     @Autowired
     private SupplierRepository supplierRepository;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     @Override
-    public Supplier add(Supplier element) {
-        return supplierRepository.save(element);
+    public Supplier create(Supplier element) {
+        Supplier supplier = null;
+        Long id = element.getId();
+        if ( id != null ) {
+            supplier = this.restore(id);
+        }else{
+            supplier = supplierRepository.save(element);
+        }
+        return supplier;
+    }
+
+    private Supplier restore( Long id ) {
+        Supplier c = supplierRepository.findById( id ).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        c.setDeleted(Boolean.FALSE);
+        return supplierRepository.save(c);
     }
 
     @Override
     public List<Supplier> findAll() {
-        return supplierRepository.findAll();
+        return supplierRepository.findAllByDeletedIsFalse();
     }
 
     @Override
@@ -31,12 +48,18 @@ public class SupplierService implements IService<Supplier, Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void remove(Long id) {
         supplierRepository.deleteById(id);
     }
 
     @Override
     public Supplier update(Supplier element) {
-        return supplierRepository.save(element);
+        Long id = element.getId();
+        //Agregar excepción de que debe dar un ID para poder actualizar.
+        Supplier supplier = this.findById(id);
+        supplier.update(element);
+        addressRepository.save(supplier.getAddress());
+        return supplierRepository.save(supplier);
     }
+
 }

@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SaleService implements IService<Sale,Long> {
+public class SaleService implements IService<Sale,Sale,Long> {
     @Autowired
     private SaleRepository saleRepository;
 
     @Override
-    public Sale add(Sale sale) {
+    public Sale create(Sale sale) {
         return saleRepository.save(sale);
     }
 
@@ -34,7 +34,7 @@ public class SaleService implements IService<Sale,Long> {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void remove(Long id) {
         saleRepository.deleteById(id);
     }
 
